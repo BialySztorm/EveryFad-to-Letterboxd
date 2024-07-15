@@ -17,7 +17,7 @@ def create_file(data):
                 for movie in value:
                     writer.writerow(list(movie.values()))
         else:
-            print("Your movie list is too big to import in one file.")
+            print("Your movie list is too big to import in one file, splitting it into multiple files...")
             for i in range(0, len(value), 1900):
                 part = (i // 1900) + 1  # Obliczanie numeru części
                 with open(f"{key}_{part}.csv", "w", newline="") as file:
