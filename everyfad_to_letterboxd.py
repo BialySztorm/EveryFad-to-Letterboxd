@@ -42,6 +42,10 @@ def get_data():
     if is_valid[0]:
         for movie in watched:
             watchedDate = movie["watchedDate"].split("T")[0] if movie["watchedDate"] else ""
+            if (len(watchedDate) <= 4 and watchedDate):
+                watchedDate += "-01-01"
+            elif (len(watchedDate) <= 7 and watchedDate):
+                watchedDate += "-01"
             review = [review for review in reviews if review["movie"]["femaId"] == movie["movie"]["femaId"]]
             if (review and is_valid[1]):
                 watched_movies.append({
