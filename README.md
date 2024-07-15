@@ -1,4 +1,4 @@
-## A simple python script to change everyfad json into letterboxd csv
+## A simple python script to change EveryFad json into Letterboxd csv
 
 Requirements:
  - EveryFad json exported data
