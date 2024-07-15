@@ -9,12 +9,23 @@ def create_file(data):
     for (key, value) in data.items():
         if (len(value) == 0):
             continue
-        with open(f"{key}.csv", "w", newline="") as file:
-            keys = value[0].keys()
-            writer = csv.writer(file)
-            writer.writerow(keys)
-            for movie in value:
-                writer.writerow(list(movie.values()))
+        if (len(value) <= 1900):
+            with open(f"{key}.csv", "w", newline="") as file:
+                keys = value[0].keys()
+                writer = csv.writer(file)
+                writer.writerow(keys)
+                for movie in value:
+                    writer.writerow(list(movie.values()))
+        else:
+            print("Your movie list is too big to import in one file.")
+            for i in range(0, len(value), 1900):
+                part = (i // 1900) + 1  # Obliczanie numeru części
+                with open(f"{key}_{part}.csv", "w", newline="") as file:
+                    keys = value[0].keys()
+                    writer = csv.writer(file)
+                    writer.writerow(keys)
+                    for movie in value[i:i+1900]:
+                        writer.writerow(list(movie.values()))
 
 
 def round_mathematically(x):
